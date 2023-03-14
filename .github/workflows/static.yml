@@ -29,11 +29,21 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Build
-        uses: DerYeger/yarn-setup-action@master
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 16.6.1
-      - run: yarn install
+      - name: Cache ~/.cache
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache
+          key: ${{ runner.os }}-cache-${{ hashFiles('./yarn.lock') }}
+      - name: Install
+        run: yarn install --frozen-lockfile
+        shell: bash
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
