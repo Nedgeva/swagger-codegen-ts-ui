@@ -1,0 +1,13 @@
+diff --git a/node_modules/fs-extra/lib/util/stat.js b/node_modules/fs-extra/lib/util/stat.js
+index 350cb9f..e7b0d61 100644
+--- a/node_modules/fs-extra/lib/util/stat.js
++++ b/node_modules/fs-extra/lib/util/stat.js
+@@ -6,7 +6,7 @@ const path = require('path')
+ const NODE_VERSION_MAJOR_WITH_BIGINT = 10
+ const NODE_VERSION_MINOR_WITH_BIGINT = 5
+ const NODE_VERSION_PATCH_WITH_BIGINT = 0
+-const nodeVersion = process.versions.node.split('.')
++const nodeVersion = "17.0.0".split('.')
+ const nodeVersionMajor = Number.parseInt(nodeVersion[0], 10)
+ const nodeVersionMinor = Number.parseInt(nodeVersion[1], 10)
+ const nodeVersionPatch = Number.parseInt(nodeVersion[2], 10)

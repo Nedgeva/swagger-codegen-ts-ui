@@ -1,0 +1,33 @@
+diff --git a/node_modules/json-schema-ref-parser/lib/index.js b/node_modules/json-schema-ref-parser/lib/index.js
+index 762b967..103e73f 100644
+--- a/node_modules/json-schema-ref-parser/lib/index.js
++++ b/node_modules/json-schema-ref-parser/lib/index.js
+@@ -86,13 +86,13 @@ $RefParser.prototype.parse = async function (path, schema, options, callback) {
+   // This is not intended to be a 100% bulletproof solution.
+   // If it doesn't work for your use-case, then use a URL instead.
+   let pathType = "http";
+-  if (url.isFileSystemPath(args.path)) {
++  if (/* url.isFileSystemPath(args.path) */ true) {
+     args.path = url.fromFileSystemPath(args.path);
+     pathType = "file";
+   }
+ 
+   // Resolve the absolute path of the schema
+-  args.path = url.resolve(url.cwd(), args.path);
++  // args.path = url.resolve(url.cwd(), args.path);
+ 
+   if (args.schema && typeof args.schema === "object") {
+     // A schema object was passed-in.
+diff --git a/node_modules/json-schema-ref-parser/lib/resolvers/file.js b/node_modules/json-schema-ref-parser/lib/resolvers/file.js
+index c15fcb5..53d872c 100644
+--- a/node_modules/json-schema-ref-parser/lib/resolvers/file.js
++++ b/node_modules/json-schema-ref-parser/lib/resolvers/file.js
+@@ -22,7 +22,7 @@ module.exports = {
+    * @returns {boolean}
+    */
+   canRead (file) {
+-    return url.isFileSystemPath(file.url);
++    return /* url.isFileSystemPath(file.url) */ true;
+   },
+ 
+   /**
