@@ -4,7 +4,7 @@
   "license": "MIT",
   "source": "src/index.html",
   "scripts": {
-    "build": "parcel build",
+    "build": "parcel build --public-url \".\"",
     "watch": "parcel",
     "patch": "patch-package",
     "postinstall": "patch-package",
