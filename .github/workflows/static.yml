@@ -30,6 +30,7 @@ jobs:
         with:
           node-version: 18
   build:
+    needs: [prepare]
     name: Build
     runs-on: ubuntu-latest
     steps:
@@ -38,6 +39,7 @@ jobs:
           node-version: 18
       - run: yarn build
   deploy:
+    needs: [prepare, build]
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
