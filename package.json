@@ -60,6 +60,7 @@
     "fs": "./src/shim/fs",
     "buffer": "./src/shim/buffer",
     "path": "./src/shim/path",
+    "process": "./src/shim/process.js",
     "processGlobal": "./src/shim/process.js",
     "bufferGlobal": "./src/shim/bufferGlobal.js"
   }
