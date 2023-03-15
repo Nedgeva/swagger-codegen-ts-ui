@@ -4,7 +4,7 @@
   "license": "MIT",
   "source": "src/index.html",
   "scripts": {
-    "build": "parcel build --no-source-maps --public-url \".\"",
+    "build": "parcel build --no-source-maps --no-cache --public-url \".\"",
     "watch": "parcel",
     "patch": "patch-package",
     "postinstall": "patch-package",
@@ -60,8 +60,10 @@
     "fs": "./src/shim/fs",
     "buffer": "./src/shim/buffer",
     "path": "./src/shim/path",
-    "process": "./src/shim/process.js",
     "processGlobal": "./src/shim/process.js",
     "bufferGlobal": "./src/shim/bufferGlobal.js"
+  },
+  "resolutions": {
+    "@devexperts/swagger-codegen-ts/prettier": "2.8.4"
   }
 }

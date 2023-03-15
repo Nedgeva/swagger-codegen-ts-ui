@@ -31,3 +31,20 @@ index c15fcb5..53d872c 100644
    },
  
    /**
+diff --git a/node_modules/json-schema-ref-parser/package.json b/node_modules/json-schema-ref-parser/package.json
+index 4123f10..e452b6a 100644
+--- a/node_modules/json-schema-ref-parser/package.json
++++ b/node_modules/json-schema-ref-parser/package.json
+@@ -30,9 +30,6 @@
+   "license": "MIT",
+   "main": "lib/index.js",
+   "typings": "lib/index.d.ts",
+-  "browser": {
+-    "fs": false
+-  },
+   "files": [
+     "lib"
+   ],
+diff --git a/node_modules/json-schema-ref-parser/test.js b/node_modules/json-schema-ref-parser/test.js
+new file mode 100644
+index 0000000..e69de29
