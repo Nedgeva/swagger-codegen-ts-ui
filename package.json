@@ -44,6 +44,7 @@
     "@devexperts/swagger-codegen-ts": "^2.0.0-alpha.28",
     "@geist-ui/core": "^2.3.8",
     "@geist-ui/icons": "^1.0.2",
+    "@zip.js/zip.js": "^2.6.78",
     "browserfs": "^1.4.3",
     "fp-ts": "^2.13.1",
     "io-ts": "^2.2.20",

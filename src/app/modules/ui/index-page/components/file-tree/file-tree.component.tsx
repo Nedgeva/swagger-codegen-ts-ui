@@ -12,8 +12,13 @@ import { isNonEmpty } from 'fp-ts/lib/ReadonlyArray'
 export type FileClickPayload = GenericActionPayload<'FILENAME_SELECT', string>
 export type PurgeBtnClickPayload = GenericActionPayload<'FS_PURGE'>
 export type ExportToCodeSandboxBtnClickPayload = GenericActionPayload<'EXPORT_TO_CODESANDBOX'>
+export type ExportToZipBtnClickPayload = GenericActionPayload<'EXPORT_TO_ZIP'>
 
-export type FileTreeActionPayload = FileClickPayload | PurgeBtnClickPayload | ExportToCodeSandboxBtnClickPayload
+export type FileTreeActionPayload =
+	| FileClickPayload
+	| PurgeBtnClickPayload
+	| ExportToCodeSandboxBtnClickPayload
+	| ExportToZipBtnClickPayload
 
 export interface FileTreeProps {
 	readonly filePaths: Observable<string[]>
@@ -48,7 +53,12 @@ export const FileTree = memo((props: FileTreeProps) => {
 						/>
 					</Tooltip>
 					<Tooltip text="Zip archive" type="dark">
-						<Button scale={1 / 3} font="12px" iconRight={<Archive />} />
+						<Button
+							scale={1 / 3}
+							font="12px"
+							iconRight={<Archive />}
+							onClick={() => handleAction({ type: 'EXPORT_TO_ZIP' })}
+						/>
 					</Tooltip>
 				</ButtonGroup>
 			</div>

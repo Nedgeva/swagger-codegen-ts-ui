@@ -29,7 +29,9 @@ import {
 	codeSandboxResponseCodec,
 	getCodeSandboxAjaxConfig,
 	getCodeSandboxURLToOpen,
+	zipFiles,
 } from './modules/core/integrations'
+import { downloadFile } from './modules/ui/utils/download.util'
 
 const ROOT_DIR = '/tmp'
 
@@ -99,7 +101,7 @@ export const app = async () => {
 		share(),
 	)
 
-	const eexportFSToCodeSandboxEffect = pipe(
+	const exportFSToCodeSandboxEffect = pipe(
 		fsActions.asObservable(),
 		filter((v) => v.type === 'EXPORT_TO_CODESANDBOX'),
 		withLatestFrom(fsPaths),
@@ -115,6 +117,15 @@ export const app = async () => {
 		),
 	)
 
+	const exportFSToZipEffect = pipe(
+		fsActions.asObservable(),
+		filter((v) => v.type === 'EXPORT_TO_ZIP'),
+		withLatestFrom(fsPaths),
+		switchMap(([, files]) => from(readDumpedFilesToRecord(files, stripPathExtraPrefix))),
+		switchMap((v) => from(zipFiles(v))),
+		tap((zipBlob) => downloadFile(zipBlob, 'file.zip')),
+	)
+
 	const purgeFSEffect = pipe(
 		fsActions.asObservable(),
 		filter((v) => v.type === 'FS_PURGE'),
@@ -122,7 +133,7 @@ export const app = async () => {
 		tap(() => notifyFSQuery.next(undefined)),
 	)
 
-	const effects = merge(specAddEffect, purgeFSEffect, eexportFSToCodeSandboxEffect)
+	const effects = merge(specAddEffect, purgeFSEffect, exportFSToCodeSandboxEffect, exportFSToZipEffect)
 
 	effects.subscribe()
 

@@ -1029,6 +1029,11 @@
   resolved "https://registry.yarnpkg.com/@yarnpkg/lockfile/-/lockfile-1.1.0.tgz#e77a97fbd345b76d83245edcd17d393b1b41fb31"
   integrity sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==
 
+"@zip.js/zip.js@^2.6.78":
+  version "2.6.78"
+  resolved "https://registry.yarnpkg.com/@zip.js/zip.js/-/zip.js-2.6.78.tgz#6e9da8eabb85d0b5e999be6b7bd742d514f5a4b7"
+  integrity sha512-eTvFqMXo67QLbodrqlY2enNZISamRSnvVgrFgdXFdj45r/Xe4hyyzH8W1EYvQU9vpQIgAY0SEwtX7c9ZgcjUvA==
+
 abortcontroller-polyfill@^1.1.9:
   version "1.7.5"
   resolved "https://registry.yarnpkg.com/abortcontroller-polyfill/-/abortcontroller-polyfill-1.7.5.tgz#6738495f4e901fbb57b6c0611d0c75f76c485bed"
