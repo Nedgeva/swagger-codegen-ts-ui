@@ -2,3 +2,5 @@
 /dist
 /patches
 /.parcel-cache
+*.md
+*.yml
