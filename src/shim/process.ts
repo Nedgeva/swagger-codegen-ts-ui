@@ -1,2 +1,2 @@
-const BrowserFS = require('./bfs').BrowserFS
+import { BrowserFS } from './bfs'
 module.exports = BrowserFS.BFSRequire('process')

@@ -10,7 +10,7 @@ Just open https://nedgeva.github.io/swagger-codegen-ts-ui/ and drag-drop your ya
 ## How to build
 Originally swagger-codegen-ts targets NodeJS runtime so it's wasn't planned to run in browser. Therefore shimming of some Node built-ins is required to properly work on client side. At the core of it's dependencies swagger-codegen-ts-ui uses [BrowserFS](https://github.com/rektide/browserfs) which handles requests to Node API like fs, path, process etc, and provides layer to work with it's own virtual FS. Other shims are covered by [Parcel](https://github.com/parcel-bundler/parcel) - the build tool.
 
-Besides shimming, some dependencies requires patching to be able successfuly operate in the browser environment. You can refer to `patches` folder in project dir (*). Patches should be applied automatically by wll-known workaround tool [patch-package](https://github.com/ds300/patch-package) once packages installed, no extra work required.
+Besides shimming, some dependencies requires patching to be able successfuly operate in the browser environment. You can refer to `patches` folder in project dir (*). Patches should be applied automatically by well-known workaround tool [patch-package](https://github.com/ds300/patch-package) once packages installed, no extra work required.
 
 So building as easy as:
 1. cloning this repo

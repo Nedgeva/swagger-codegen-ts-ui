@@ -61,8 +61,8 @@
     "fs": "./src/shim/fs",
     "buffer": "./src/shim/buffer",
     "path": "./src/shim/path",
-    "processGlobal": "./src/shim/process.js",
-    "bufferGlobal": "./src/shim/bufferGlobal.js"
+    "processGlobal": "./src/shim/process",
+    "bufferGlobal": "./src/shim/bufferGlobal"
   },
   "resolutions": {
     "@devexperts/swagger-codegen-ts/prettier": "2.8.4"
