@@ -25,7 +25,8 @@ import {
 	writeFile,
 } from './modules/core/core'
 import {
-	addPackageJSONStuff,
+	addPackageJSON,
+	addPackageJSONStuffToCodeSandbox,
 	codeSandboxResponseCodec,
 	getCodeSandboxAjaxConfig,
 	getCodeSandboxURLToOpen,
@@ -106,7 +107,7 @@ export const app = async () => {
 		filter((v) => v.type === 'EXPORT_TO_CODESANDBOX'),
 		withLatestFrom(fsPaths),
 		switchMap(([, files]) => from(readDumpedFilesToRecord(files, stripPathExtraPrefix))),
-		map(addPackageJSONStuff),
+		map(addPackageJSONStuffToCodeSandbox),
 		switchMap((v) => ajax(getCodeSandboxAjaxConfig(v))),
 		map((v) => codeSandboxResponseCodec.decode(v.response)),
 		tap(
@@ -122,8 +123,14 @@ export const app = async () => {
 		filter((v) => v.type === 'EXPORT_TO_ZIP'),
 		withLatestFrom(fsPaths),
 		switchMap(([, files]) => from(readDumpedFilesToRecord(files, stripPathExtraPrefix))),
-		switchMap((v) => from(zipFiles(v))),
-		tap((zipBlob) => downloadFile(zipBlob, 'file.zip')),
+		map((v) => {
+			const date = new Date()
+			return { files: addPackageJSON(v, date), date }
+		}),
+		switchMap(({ files, date }) => from(zipFiles(files).then((zipBlob) => ({ zipBlob, date })))),
+		tap(({ zipBlob, date }) =>
+			downloadFile(zipBlob, `${date.toISOString().replace(':', '_')}-swagger-codegen-ts-ui.zip`),
+		),
 	)
 
 	const purgeFSEffect = pipe(

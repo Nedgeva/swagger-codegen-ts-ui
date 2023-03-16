@@ -15,7 +15,9 @@ interface CodeSandboxPayload {
 	readonly files: ReadonlyRecord<string, CodeSandboxContent>
 }
 
-export const addPackageJSONStuff = (filesRecord: Record<string, FileContentsRecord>): CodeSandboxPayload => ({
+export const addPackageJSONStuffToCodeSandbox = (
+	filesRecord: Record<string, FileContentsRecord>,
+): CodeSandboxPayload => ({
 	files: {
 		...filesRecord,
 		'package.json': {
@@ -48,6 +50,28 @@ export const codeSandboxResponseCodec = type({ sandbox_id: string })
 
 export const getCodeSandboxURLToOpen = (sandboxId: string) => `https://codesandbox.io/s/${sandboxId}`
 
+export const addPackageJSON = (
+	filesRecord: Record<string, FileContentsRecord>,
+	dateGenerated: Date,
+): Record<string, FileContentsRecord> => ({
+	...filesRecord,
+	'package.json': {
+		content: `{
+  "dependencies": {
+    "fp-ts": "latest",
+    "io-ts": "latest",
+    "io-ts-types": "latest",
+    "monocle-ts": "latest",
+    "newtype-ts": "latest",
+    "typescript": "latest"
+  },
+  "name": "swagger-codegen-ts-ui-generated-code",
+  "description": "Generated code from swagger-codegen-ts-ui at ${dateGenerated.toUTCString()}",
+  "version": "1.0.0"
+}`,
+	},
+})
+
 export const zipFiles = async (filesContent: Record<string, FileContentsRecord>) => {
 	const zipFileWriter = new BlobWriter()
 	const zipWriter = new ZipWriter(zipFileWriter)
@@ -55,9 +79,7 @@ export const zipFiles = async (filesContent: Record<string, FileContentsRecord>)
 	const files = pipe(
 		filesContent,
 		readonlyRecord.toReadonlyArray,
-		readonlyArray.map(([fileName, contents]) =>
-			zipWriter.add(fileName, new TextReader(contents.content as string)),
-		),
+		readonlyArray.map(([fileName, contents]) => zipWriter.add(fileName, new TextReader(contents.content))),
 	)
 
 	await Promise.all(files)

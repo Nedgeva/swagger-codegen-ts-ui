@@ -1,13 +1,12 @@
 import { BrowserFS } from '../../../shim/bfs'
 import { readonlyArray } from 'fp-ts'
-import { Json } from 'fp-ts/lib/Json'
 import * as fs from 'fs'
 import * as path from 'path'
 import { Observable } from 'rxjs'
 import * as util from 'util'
 
 export interface FileContentsRecord {
-	readonly content: Json
+	readonly content: string
 }
 
 export const installAndConfigureBFS = (root: string) => {
