@@ -49,14 +49,7 @@ export const SpecAdd = memo((props: SpecAddProps) => {
 
 	return (
 		<Fieldset width="100%">
-			{/*       <Fieldset.Title>
-        Drag & drop OAPI yml spec in the field below
-      </Fieldset.Title> */}
 			<Fieldset.Subtitle>
-				{/* <div {...getRootProps({ className: "dropzone" })}>
-          <input {...getInputProps()} />
-          <p>Drag 'n' drop some files here, or click to select files</p>
-        </div> */}
 				<div {...getRootProps({ className: 'dropzone' })}>
 					<Display caption="Drag 'n' drop some files here, or click to select files">
 						<input {...getInputProps()} />

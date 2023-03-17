@@ -3,9 +3,15 @@ import { SpecAdd, SpecAddProps } from './components/spec-add/spec-add.component'
 import { LogPrinter, LogPrinterProps } from './components/log-printer/log-printer.component'
 import { FileTree, FileTreeProps } from './components/file-tree/file-tree.component'
 import { CodeViewer, CodeViewerProps } from './components/code-viewer/code-viewer.component'
+import { NotificationToast, NotificationToastProps } from './components/notification-toast/notification-toast.component'
 import React, { memo } from 'react'
 
-export interface IndexPageProps extends SpecAddProps, LogPrinterProps, FileTreeProps, CodeViewerProps {}
+export interface IndexPageProps
+	extends SpecAddProps,
+		LogPrinterProps,
+		FileTreeProps,
+		CodeViewerProps,
+		NotificationToastProps {}
 
 export const IndexPage = memo((props: IndexPageProps) => {
 	return (
@@ -26,6 +32,7 @@ export const IndexPage = memo((props: IndexPageProps) => {
 					</Grid>
 				</Grid.Container>
 			</Page.Content>
+			<NotificationToast notificationToastValue={props.notificationToastValue} />
 		</Page>
 	)
 })
